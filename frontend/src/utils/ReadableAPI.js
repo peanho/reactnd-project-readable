@@ -12,10 +12,10 @@ const throwOnError = (response) => {
 
 export const getPosts = () =>
   fetch(`${api}/posts`, { headers })
-    .then(handleErrors)
+    .then(throwOnError)
     .then(res => res.json());
 
 export const getCategories = () =>
   fetch(`${api}/categorie`, { headers })
-    .then(handleErrors)
+    .then(throwOnError)
     .then(res => res.json());

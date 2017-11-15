@@ -16,10 +16,10 @@ export function receivePosts( posts ) {
   };
 }
 
-export function fecthPosts() {
+export function fetchPosts() {
   return dispatch => {
     dispatch(requestPosts());
     return ReadableAPI.getPosts()
       .then(posts => dispatch(receivePosts(posts)));
-  }
+  };
 }

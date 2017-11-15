@@ -21,7 +21,6 @@ function byId(state = {}, action) {
   switch (action.type) {
     case RECEIVE_POSTS:
       return mapById(action.posts);
-      break;
     default:
       return state;
   }
