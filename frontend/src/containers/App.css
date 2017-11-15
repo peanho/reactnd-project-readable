@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: justify;
 }
 
 .App-logo {
@@ -20,6 +20,7 @@
 
 .App-intro {
   font-size: large;
+  padding: 20px;
 }
 
 @keyframes App-logo-spin {

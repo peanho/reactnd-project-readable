@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { Switch, Route } from 'react-router';
+import { Switch, Route } from 'react-router';
 import { fetchPosts } from '../actions';
+import FilterablePostList from './FilterablePostList';
+// import Posts from '../components/Posts';
 import logo from '../logo.svg';
 import './App.css';
 
@@ -20,28 +22,25 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="App-intro">
+          <Switch>
+            <Route path="/:category/:postId" render={ ({ match }) => (
+              <div>
+                <h3>category: {match.params.category}</h3>
+                <h3>post id: {match.params.postId}</h3>
+              </div>
+            )}
+            />
+            <Route path="/:category?" component={FilterablePostList} />
+          </Switch>
+        </div>
       </div>
     );
   }
 }
 
 App.propTypes = {
-  posts: PropTypes.shape({
-    byId: PropTypes.object.isRequired,
-    allIds: PropTypes.array.isRequired
-  }),
   dispatch: PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
-  const { posts } = state;
-  const items = posts.allIds.map( id => posts.byId[id]);
-  return {
-    items
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);
