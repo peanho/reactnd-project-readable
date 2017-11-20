@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router';
 import { fetchPosts } from '../actions';
-import FilterablePostList from './FilterablePostList';
-// import Posts from '../components/Posts';
+import SorterablePostList from './SorterablePostList';
 import logo from '../logo.svg';
 import './App.css';
 
@@ -31,7 +30,7 @@ class App extends Component {
               </div>
             )}
             />
-            <Route path="/:category?" component={FilterablePostList} />
+            <Route path="/:category?" component={SorterablePostList} />
           </Switch>
         </div>
       </div>

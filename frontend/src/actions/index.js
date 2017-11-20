@@ -2,6 +2,7 @@ import * as ReadableAPI from '../utils/ReadableAPI';
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const ORDER_BY = 'ORDER_BY';
 
 export function requestPosts() {
   return {
@@ -14,6 +15,14 @@ export function receivePosts( posts ) {
     type: RECEIVE_POSTS,
     posts
   };
+}
+
+export function sortBy(field, direction) {
+  return {
+    type: ORDER_BY,
+    field,
+    direction
+  }
 }
 
 export function fetchPosts() {
