@@ -1,14 +1,8 @@
 import { combineReducers } from 'redux';
 import { RECEIVE_POSTS, ORDER_BY } from '../actions';
+import { mapById } from './helpers';
 
-function mapById(items = [], initialState = {}) {
-  return items.reduce((state, item) => {
-    state[item.id] = item;
-    return state;
-  }, initialState);
-}
-
-function allIds(state = [], action) {
+const allPosts = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_POSTS:
       return action.posts.map(it => it.id);
@@ -17,7 +11,7 @@ function allIds(state = [], action) {
   }
 }
 
-function byId(state = {}, action) {
+const postsById = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_POSTS:
       return mapById(action.posts);
@@ -26,7 +20,7 @@ function byId(state = {}, action) {
   }
 }
 
-function orderBy(state = 'voteScore', action) {
+const orderBy = (state = 'voteScore', action) => {
   switch (action.type) {
     case ORDER_BY:
       return action.orderBy;
@@ -36,7 +30,7 @@ function orderBy(state = 'voteScore', action) {
 }
 
 export const postsReducer = combineReducers({
-  byId,
-  allIds,
+  byId: postsById,
+  allIds: allPosts,
   orderBy
 });
