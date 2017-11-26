@@ -1,13 +1,13 @@
 import React from 'react';
 import PostsContainer from '../containers/PostsContainer';
-// import CategoriesContainer from '../containers/CategoriesContainer';
+import CategoriesContainer from '../containers/CategoriesContainer';
 
 function PostListView( { match: { params } } ) {
   const category = params.category || 'ALL_CATEGORIES';
   return (
     <div>
       <div><PostsContainer categoryFilter={category} /></div>
-      {/* <div><CategoriesContainer selectedCategory={category} /></div> */}
+      <div><CategoriesContainer selectedCategory={category} /></div>
     </div>
   );
 }

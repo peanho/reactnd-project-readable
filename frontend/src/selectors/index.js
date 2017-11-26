@@ -2,8 +2,10 @@ import { createSelector } from 'reselect';
 
 const getPostsIds = state => state.posts.allIds;
 const getPostsById = state => state.posts.byId;
-const getCategoryFilter = (_, props) => props.categoryFilter;
 const getSortBy = state => state.posts.sortBy;
+const getCategoryFilter = (_, props) => props.categoryFilter;
+const getCategoriesIds = state => state.categories.allIds;
+const getCategoriesByIds = state => state.categories.byId;
 
 const getAllPosts = createSelector(
   [ getPostsIds, getPostsById ],
@@ -37,4 +39,9 @@ export const getVisiblePosts = createSelector(
         return posts;
     }
   }
+);
+
+export const getCategories = createSelector(
+  [ getCategoriesIds, getCategoriesByIds ],
+  (allIds, byId) => allIds.map(id => byId[id])
 );

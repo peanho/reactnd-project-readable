@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router';
+import { Route } from 'react-router';
 import PostsListView from '../components/PostsListView';
 import PostDetailView from '../components/PostDetailView';
 import logo from '../logo.svg';
@@ -16,12 +16,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div className="App-intro">
-          <Switch>
-            <Route path="/:category/:postId" component={PostDetailView} />
-            />
-            <Route path="/:category?" component={PostsListView} />
-            {/* <Route path="/:category?" component={SorterablePostList} /> */}
-          </Switch>
+          <Route exact path="/:category?" component={PostsListView} />
+          <Route path="/:category/:postId" component={PostDetailView} />
         </div>
       </div>
     );
