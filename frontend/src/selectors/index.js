@@ -1,13 +1,19 @@
 import { createSelector } from 'reselect';
 
-const getPosts = state => state.posts.allIds.map(id => state.posts.byId[id]);
+const getPostsIds = state => state.posts.allIds;
+const getPostsById = state => state.posts.byId;
 const getCategoryFilter = (_, props) => props.categoryFilter;
-const getOrderBy = state => state.posts.orderBy;
+const getSortBy = state => state.posts.sortBy;
 
-const getFilteredPostsByCategory = createSelector(
-  [ getCategoryFilter, getPosts ],
+const getAllPosts = createSelector(
+  [ getPostsIds, getPostsById ],
+  (postsIds, postsById) => postsIds.map(id => postsById[id])
+)
+
+const getPostsFilteredByCategory = createSelector(
+  [ getCategoryFilter, getAllPosts ],
   (category, posts) => {
-    if (category === undefined) {
+    if (category === 'ALL_CATEGORIES') {
       return posts;
     } else {
       return posts.filter(it => it.category === category);
@@ -15,14 +21,18 @@ const getFilteredPostsByCategory = createSelector(
   }
 );
 
-export const getVisiblePostsOrdered = createSelector(
-  [ getFilteredPostsByCategory, getOrderBy ],
-  (posts, [criteria, order]) => {
-    switch (order) {
-      case 'desc':
-        return posts.sort((a, b) => b[criteria] - a[criteria]);
-      case 'asc':
-        return posts.sort((a, b) => a[criteria] - b[criteria]);
+export const getVisiblePosts = createSelector(
+  [ getPostsFilteredByCategory, getSortBy ],
+  (unsorted, sortBy) => {
+      const posts = [...unsorted];
+    switch (sortBy) {
+      case 'TOP':
+        return posts.sort((st, nd) => nd.voteScore - st.voteScore);
+      case 'NEW':
+        return posts.sort((st, nd) => nd.timestamp - st.timestamp);
+      case 'HOT':
+        return posts.sort((st, nd) => nd.commentCount - st.commentCount);
+      case 'NONE':
       default:
         return posts;
     }

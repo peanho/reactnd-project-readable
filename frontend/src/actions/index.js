@@ -2,7 +2,7 @@ import * as ReadableAPI from '../utils/ReadableAPI';
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const ORDER_BY = 'ORDER_BY';
+export const SORT_POSTS = 'SORT_POSTS';
 export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES';
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 
@@ -19,11 +19,10 @@ export function receivePosts( posts ) {
   };
 }
 
-export function sortBy(field, direction) {
+export function sortPosts( criterion ) {
   return {
-    type: ORDER_BY,
-    field,
-    direction
+    type: SORT_POSTS,
+    sortBy: criterion
   }
 }
 

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_POSTS, ORDER_BY } from '../actions';
+import { RECEIVE_POSTS, SORT_POSTS } from '../actions';
 import { mapById } from './helpers';
 
 const allPosts = (state = [], action) => {
@@ -20,10 +20,10 @@ const postsById = (state = {}, action) => {
   }
 }
 
-const orderBy = (state = 'voteScore', action) => {
+const sortBy = (state = 'TOP', action) => {
   switch (action.type) {
-    case ORDER_BY:
-      return action.orderBy;
+    case SORT_POSTS:
+      return action.sortBy;
     default:
       return state;
   }
@@ -32,5 +32,5 @@ const orderBy = (state = 'voteScore', action) => {
 export const postsReducer = combineReducers({
   byId: postsById,
   allIds: allPosts,
-  orderBy
+  sortBy
 });
