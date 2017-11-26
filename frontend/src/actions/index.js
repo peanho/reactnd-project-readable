@@ -23,7 +23,7 @@ export function sortPosts( criterion ) {
   return {
     type: SORT_POSTS,
     sortBy: criterion
-  }
+  };
 }
 
 export function requestCategories() {
@@ -35,8 +35,8 @@ export function requestCategories() {
 export function receiveCategories( categories ) {
   return {
     type: RECEIVE_CATEGORIES,
-    categories
-  }
+    ...categories
+  };
 }
 
 export function fetchPosts() {
@@ -51,6 +51,6 @@ export function fetchCategories() {
   return dispatch => {
     dispatch(requestCategories());
     return ReadableAPI.getCategories()
-      .then(categories => dispatch(receiveCategories()));
-  }
+      .then(categories => dispatch(receiveCategories(categories)));
+  };
 }
