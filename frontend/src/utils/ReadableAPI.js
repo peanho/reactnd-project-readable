@@ -19,3 +19,15 @@ export const getCategories = () =>
   fetch(`${api}/categories`, { headers })
     .then(throwOnError)
     .then(res => res.json());
+
+export const postVote = (postId, vote) =>
+  fetch(`${api}/posts/${postId}`, {
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({option: vote})
+  })
+    .then(throwOnError)
+    .then(res => res.json());

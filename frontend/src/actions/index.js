@@ -5,6 +5,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const SORT_POSTS = 'SORT_POSTS';
 export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES';
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
+export const RECEIVE_POST_UPDATE = 'RECEIVE_POST_UPDATE';
 
 export function requestPosts() {
   return {
@@ -23,6 +24,13 @@ export function sortPosts( criterion ) {
   return {
     type: SORT_POSTS,
     sortBy: criterion
+  };
+}
+
+export function receivePostUpdate( post ) {
+  return {
+    type: RECEIVE_POST_UPDATE,
+    post
   };
 }
 
@@ -53,4 +61,11 @@ export function fetchCategories() {
     return ReadableAPI.getCategories()
       .then(categories => dispatch(receiveCategories(categories)));
   };
+}
+
+export function sendVote(postId, vote) {
+  return dispatch => {
+    return ReadableAPI.postVote(postId, vote)
+      .then(post => dispatch(receivePostUpdate(post)));
+  }
 }

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_POSTS, SORT_POSTS } from '../actions';
+import { RECEIVE_POSTS, SORT_POSTS, RECEIVE_POST_UPDATE } from '../actions';
 import { mapById } from './helpers';
 
 const allPosts = (state = [], action) => {
@@ -15,9 +15,20 @@ const postsById = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_POSTS:
       return mapById(action.posts);
+    case RECEIVE_POST_UPDATE:
+      return post(state, action);
     default:
       return state;
   }
+}
+
+const post = (state, action) => {
+  const { post } = action;
+  const { id } = post;
+  return {
+    ...state,
+    [id]: post
+  };
 }
 
 const sortBy = (state = 'TOP', action) => {
