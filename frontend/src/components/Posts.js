@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Voter from './Voter';
 
-function Posts(props) {
-  const { posts, onSortCriteriaSelected } = props;
+const Posts = props => {
+  const { posts, onReorder, onVote } = props;
+  const handleReorder = event => onReorder(event.target.value);
+  const handleVote = postId => vote => onVote(postId, vote);
   return (
     <div>
       <div>
-        <select onChange={e => onSortCriteriaSelected(e.target.value)}>
+        <select onChange={handleReorder}>
           <option value="NONE" disabled>none</option>
           <option value="TOP">top</option>
           <option value="NEW">new</option>
@@ -16,7 +19,10 @@ function Posts(props) {
       <div>
         {posts.map(post => (
           <div key={post.id}>
-            <div>{post.voteScore}</div>
+            <Voter
+              score={post.voteScore}
+              onVote={handleVote(post.id)}
+            />
             <div>{post.title}</div>
             <div>
               <span>{post.author}</span>

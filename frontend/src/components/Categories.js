@@ -7,8 +7,8 @@ function Categories( props ) {
   return (
     <div>
       {categories.map(category => (
-        <div>
-          <Link key={category.name} to={category.path}>{category.name}</Link>
+        <div key={category.name}>
+          <Link to={category.path}>{category.name}</Link>
         </div>
       ))}
     </div>
