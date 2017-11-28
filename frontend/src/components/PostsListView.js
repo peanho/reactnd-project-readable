@@ -2,8 +2,10 @@ import React from 'react';
 import PostsContainer from '../containers/PostsContainer';
 import CategoriesContainer from '../containers/CategoriesContainer';
 
-function PostListView( { match: { params } } ) {
-  const category = params.category || 'ALL_CATEGORIES';
+const PostListView = props => {
+  const { match } = props;
+  const { params } = match;
+  const { category = 'ALL_CATEGORIES' } = params;
   return (
     <div>
       <div><PostsContainer categoryFilter={category} /></div>

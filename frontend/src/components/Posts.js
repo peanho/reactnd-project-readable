@@ -10,7 +10,6 @@ const Posts = props => {
     <div>
       <div>
         <select onChange={handleReorder}>
-          <option value="NONE" disabled>none</option>
           <option value="TOP">top</option>
           <option value="NEW">new</option>
           <option value="TRENDING">trending</option>

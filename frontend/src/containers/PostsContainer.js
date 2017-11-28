@@ -32,7 +32,7 @@ class PostsContainer extends Component {
     return (
       <Posts
         posts={posts}
-        onSortCriteriaSelected={this.sortBy}
+        onReorder={this.sortBy}
         onVote={this.handleVote}
       />
     );
@@ -44,7 +44,5 @@ const mapStateToProps = (state, ownProps) => {
     posts: getVisiblePosts(state, ownProps)
   };
 }
-
-
 
 export default connect(mapStateToProps)(PostsContainer);
