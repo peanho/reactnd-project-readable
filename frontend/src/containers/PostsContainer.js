@@ -6,23 +6,17 @@ import Posts from '../components/Posts';
 
 class PostsContainer extends Component {
 
-  constructor(props) {
-    super(props);
-    this.sortBy = this.sortBy.bind(this);
-    this.handleVote = this.handleVote.bind(this);
-  }
-
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchPosts());
   }
 
-  sortBy(criterion) {
+  handleReorder = (criterion) => {
     const { dispatch } = this.props;
     dispatch(sortPosts(criterion));
   }
 
-  handleVote(postId, vote) {
+  handleVote = (postId, vote) => {
     const { dispatch } = this.props;
     dispatch(sendVote(postId, vote));
   }
@@ -32,17 +26,15 @@ class PostsContainer extends Component {
     return (
       <Posts
         posts={posts}
-        onReorder={this.sortBy}
+        onReorder={this.handleReorder}
         onVote={this.handleVote}
       />
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    posts: getVisiblePosts(state, ownProps)
-  };
-}
+const mapStateToProps = (state, ownProps) => ({
+  posts: getVisiblePosts(state, ownProps)
+});
 
 export default connect(mapStateToProps)(PostsContainer);

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Voter from './Voter';
+import PostSummary from './PostSummary';
 
 const Posts = props => {
   const { posts, onReorder, onVote } = props;
@@ -22,12 +23,7 @@ const Posts = props => {
               score={post.voteScore}
               onVote={handleVote(post.id)}
             />
-            <div>{post.title}</div>
-            <div>
-              <span>{post.author}</span>
-              <span> - </span>
-              <span>{post.commentCount} comments</span>
-            </div>
+            <PostSummary post={post} />
           </div>
         ))}
       </div>
@@ -37,7 +33,8 @@ const Posts = props => {
 
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
-  onSortCriteriaSelected: PropTypes.func.isRequired
+  onReorder: PropTypes.func.isRequired,
+  onVote: PropTypes.func.isRequired
 }
 
 export default Posts;

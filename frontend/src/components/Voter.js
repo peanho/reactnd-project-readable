@@ -6,7 +6,7 @@ function Voter(props) {
   return (
     <div>
       <button onClick={handleVote('upVote')}>Vote UP</button>
-      <span>{score}</span>
+      <span> {score} </span>
       <button onClick={handleVote('downVote')}>Vote DOWN</button>
     </div>
   );

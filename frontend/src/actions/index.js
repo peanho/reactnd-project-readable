@@ -69,3 +69,16 @@ export function sendVote(postId, vote) {
       .then(post => dispatch(receivePostUpdate(post)));
   }
 }
+
+function shouldFetchPostDetail(state, postId) {
+  const post = state.posts.byId[postId];
+  return post === undefined;
+}
+
+export function fetchPostDetailIfNeeded(postId) {
+  return (dispatch, getState) => {
+    if (shouldFetchPostDetail(getState(), postId)) {
+      return dispatch(fetchPosts());
+    }
+  }
+}
