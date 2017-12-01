@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { fetchPostDetailIfNeeded } from '../actions';
-import PostSummary from '../components/PostSummary';
+// import PostSummary from '../components/PostSummary';
 
 class PostDetailContainer extends Component {
 
@@ -17,7 +17,7 @@ class PostDetailContainer extends Component {
     }
     return (
       <div>
-        <PostSummary post={post} />
+        {/* <PostSummary post={post} /> */}
       </div>
 
     );

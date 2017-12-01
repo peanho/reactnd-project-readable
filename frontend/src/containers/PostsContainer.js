@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts, sortPosts, sendVote } from '../actions';
 import { getVisiblePosts } from '../selectors';
-import Posts from '../components/Posts';
+import PostsList from '../components/PostsList';
 
 class PostsContainer extends Component {
 
@@ -23,8 +23,13 @@ class PostsContainer extends Component {
 
   render() {
     const { posts } = this.props;
+    if (posts.length === 0) {
+      return (
+        <h2>No Posts!</h2>
+      );
+    }
     return (
-      <Posts
+      <PostsList
         posts={posts}
         onReorder={this.handleReorder}
         onVote={this.handleVote}
