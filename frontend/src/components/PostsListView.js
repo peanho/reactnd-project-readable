@@ -6,8 +6,12 @@ const PostListView = (props) => {
   const { category = 'ALL_CATEGORIES' } = props.match.params;
   return (
     <div className="row">
-      <PostsContainer categoryFilter={category} />
-      <CategoriesContainer selectedCategory={category} />
+      <div className="col-10">
+        <PostsContainer categoryFilter={category} />
+      </div>
+      <div className="col">
+        <CategoriesContainer selectedCategory={category} />
+      </div>
     </div>
   );
 }

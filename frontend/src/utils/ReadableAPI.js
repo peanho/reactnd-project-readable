@@ -20,6 +20,17 @@ export const getCategories = () =>
     .then(throwOnError)
     .then(res => res.json());
 
+export const getComments = postId =>
+  fetch(`${api}/posts/${postId}/comments`, { headers })
+    .then(throwOnError)
+    .then(res => res.json())
+    .then(enhanceWithParentId(postId));
+
+const enhanceWithParentId = parentId => comments => ({
+  parentId,
+  comments
+});
+
 export const postVote = (postId, vote) =>
   fetch(`${api}/posts/${postId}`, {
     headers: {

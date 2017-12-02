@@ -23,11 +23,6 @@ class PostsContainer extends Component {
 
   render() {
     const { posts } = this.props;
-    if (posts.length === 0) {
-      return (
-        <h2>No Posts!</h2>
-      );
-    }
     return (
       <PostsList
         posts={posts}
