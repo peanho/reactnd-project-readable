@@ -1,7 +1,15 @@
 import React from 'react';
+import PostDetailContainer from '../containers/PostDetailContainer';
 
-export default function PostsDetailView( props ) {
+const PostDetailView = props => {
+  const { post_id: postId } = props.match.params;
   return (
-    <h1>PostsDetailView</h1>
+    <div className="row">
+      <div className="col">
+        <PostDetailContainer postId={postId} />
+      </div>
+    </div>
   );
-}
+};
+
+export default PostDetailView;

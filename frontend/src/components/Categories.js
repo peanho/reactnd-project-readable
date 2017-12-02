@@ -6,6 +6,9 @@ function Categories( props ) {
   const { categories } = props;
   return (
     <div>
+      <div>
+        <Link to="/">all</Link>
+      </div>
       {categories.map(category => (
         <div key={category.name}>
           <Link to={category.path}>{category.name}</Link>
