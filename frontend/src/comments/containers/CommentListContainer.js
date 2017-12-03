@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchComments } from '../actions/commentsActions';
-import CommentsList from '../components/CommentsList';
+import { fetchComments, sendVote } from '../actions';
+import CommentList from '../components/CommentList';
 
 class CommentListContainer extends Component {
 
@@ -12,13 +12,13 @@ class CommentListContainer extends Component {
 
   handleVote = (commentId, vote) => {
     const { dispatch } = this.props;
-    dispatch(sendVote())
+    dispatch(sendVote(commentId, vote))
   }
 
   render() {
     const { comments } = this.props;
     return (
-      <CommentsList comments={comments} />
+      <CommentList comments={comments} onVote={this.handleVote} />
     );
   }
 }
