@@ -1,10 +1,7 @@
 import { combineReducers } from 'redux';
 import { mapById } from '../utils/helpers';
-import {
-  RECEIVE_POSTS,
-  SORT_POSTS,
-  RECEIVE_POST_UPDATE
-} from './actions'
+import { RECEIVE_POSTS, SORT_POSTS, RECEIVE_POST_UPDATE } from './actions'
+import { actions as commentActions } from '../comments'
 
 /**
  * Updates the post with a new "comments" array. Solution adapted on redux
@@ -40,8 +37,8 @@ const postsById = (state = {}, action) => {
       return mapById(action.posts);
     case RECEIVE_POST_UPDATE:
       return post(state, action);
-    // case RECEIVE_COMMENTS:
-    //   return addComments(state, action);
+    case commentActions.RECEIVE_COMMENTS:
+      return addComments(state, action);
     default:
       return state;
   }
@@ -52,7 +49,10 @@ const post = (state, action) => {
   const { id } = post;
   return {
     ...state,
-    [id]: post
+    [id]: {
+      ...state[id],
+      ...post
+    }
   }
 }
 

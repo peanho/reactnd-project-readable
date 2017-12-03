@@ -1,5 +1,6 @@
 import React from 'react';
 import Voter from '../../components/Voter'
+import { CommentList } from '../../comments'
 import Post from './Post'
 
 const PostDetail = props => {
@@ -15,6 +16,7 @@ const PostDetail = props => {
             <Post {...post}>
               <div>{post.body}</div>
             </Post>
+            <CommentList postId={post.id} />
           </div>
         </div>
       </div>

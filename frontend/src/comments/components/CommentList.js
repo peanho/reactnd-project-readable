@@ -1,8 +1,8 @@
 import React from 'react';
-import Voter from './Voter';
+import Voter from '../../components/Voter';
 import Comment from './Comment';
 
-const CommentsList = props => {
+const CommentList = props => {
   const { comments, onVote } = props;
   const handleVote = commentId => vote => onVote(commentId, vote);
   return (
@@ -25,4 +25,4 @@ const CommentsList = props => {
   );
 };
 
-export default CommentsList;
+export default CommentList;

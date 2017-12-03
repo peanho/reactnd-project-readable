@@ -14,53 +14,42 @@ export const get = (commentId) =>
  * Post a vote on a comment
  * POST /comments/:id
  */
-export const post = (commentId, option) => {
-  const init = {
+export const post = (commentId, option) =>
+  fetch(`${resource}/${commentId}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
     method: 'POST',
     body: JSON.stringify({ option })
-  };
-  fetch(`${resource}/${commentId}`, init)
-    .then(res => res.json());
-}
+  })
+  .then(res => res.json());
 
 /**
  * Updates the comment on the server
  * PUT /comments/:id
  */
-export const update = comment => {
-  const init = {
+export const update = comment =>
+  fetch(`${resource}/${comment.id}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
     method: 'PUT',
     body: JSON.stringify({ comment })
-  };
-  fetch(`${resource}/${comment.id}`, init)
-    .then(res => res.json());
-};
+  })
+  .then(res => res.json());
 
 /**
  * Deletes the comment on the server
  * DELETE /comments/:id
  */
-export const remove = commentId => {
-  const init = {
+export const remove = commentId =>
+  fetch(`${resource}/${commentId}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
     method: 'DELETE'
-  };
-  fetch(`${resource}/${commentId}`, init);
-};
-
-// utilities
-const enhanceWithParentId = parentId => comments => ({
-  parentId,
-  comments
-});
+  })
+  .then(res => res.json())
