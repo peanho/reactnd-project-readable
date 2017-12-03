@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, sortPosts, sendVote } from '../actions';
+import { fetchPosts, sortPosts, sendVote } from '../actions/posts.actions';
 import { getVisiblePosts } from '../selectors';
 import PostsList from '../components/PostsList';
 

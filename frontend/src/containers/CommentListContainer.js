@@ -10,6 +10,11 @@ class CommentListContainer extends Component {
     shouldFetchComments && dispatch(fetchComments(postId));
   }
 
+  handleVote = (commentId, vote) => {
+    const { dispatch } = this.props;
+    dispatch(sendVote())
+  }
+
   render() {
     const { comments } = this.props;
     return (

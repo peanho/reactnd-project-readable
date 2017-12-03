@@ -1,10 +1,8 @@
-import * as ReadableAPI from '../utils/ReadableAPI';
+import * as PostsAPI from '../apis/posts'
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const SORT_POSTS = 'SORT_POSTS';
-export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES';
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const RECEIVE_POST_UPDATE = 'RECEIVE_POST_UPDATE';
 
 export function requestPosts() {
@@ -34,38 +32,17 @@ export function receivePostUpdate( post ) {
   };
 }
 
-export function requestCategories() {
-  return {
-    type: REQUEST_CATEGORIES
-  };
-}
-
-export function receiveCategories( categories ) {
-  return {
-    type: RECEIVE_CATEGORIES,
-    ...categories
-  };
-}
-
 export function fetchPosts() {
   return dispatch => {
     dispatch(requestPosts());
-    return ReadableAPI.getPosts()
+    return PostsAPI.getAll()
       .then(posts => dispatch(receivePosts(posts)));
-  };
-}
-
-export function fetchCategories() {
-  return dispatch => {
-    dispatch(requestCategories());
-    return ReadableAPI.getCategories()
-      .then(categories => dispatch(receiveCategories(categories)));
   };
 }
 
 export function sendVote(postId, vote) {
   return dispatch => {
-    return ReadableAPI.postVote(postId, vote)
+    return PostsAPI.post(postId, vote)
       .then(post => dispatch(receivePostUpdate(post)));
   }
 }

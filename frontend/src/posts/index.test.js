@@ -3,7 +3,7 @@ import {
   RECEIVE_POSTS,
   requestPosts,
   receivePosts
-} from './index';
+} from './postsActions';
 
 describe('actions', () => {
   it('should create an action to request all posts', () => {

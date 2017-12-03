@@ -4,7 +4,7 @@ const Comment = props => {
   const { body, author, timestamp } = props;
   const updatedAt = new Date(timestamp).toLocaleString();
   return (
-    <div className="card my-2">
+    <div className="card">
       <div className="card-body">
         <h6 className="card-title">{body}</h6>
         <h6 className="card-subtitle text-muted">

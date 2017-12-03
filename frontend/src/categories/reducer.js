@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
-import { RECEIVE_CATEGORIES } from '../actions/posts.actions';
+import { combineReducers } from 'redux'
+import { RECEIVE_CATEGORIES } from './actions';
 
 const categoriesById = (state = {}, action) => {
   switch (action.type) {
@@ -26,3 +26,5 @@ export const categoriesReducer = combineReducers({
   byId: categoriesById,
   allIds: allCategories
 });
+
+export default categoriesReducer;

@@ -1,4 +1,5 @@
-import * as ReadableAPI from '../utils/ReadableAPI';
+import * as PostsAPI from '../apis/posts.api';
+import * as CommentsAPI from '../apis/comments.api';
 
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
@@ -13,9 +14,9 @@ const receiveComments = payload => ({
   payload
 });
 
-export const fetchComments = postId => dispatch => {
+const fetchComments = postId => dispatch => {
   dispatch(requestComments);
-  return ReadableAPI.getComments(postId)
+  return PostsAPI.get(postId)
     .then(payload => dispatch(receiveComments(payload)));
 }
 

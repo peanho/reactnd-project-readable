@@ -24,6 +24,7 @@ class PostDetailContainer extends Component {
   render() {
     const { post } = this.props;
     const { isFetching } = post;
+    debugger;
     return isFetching ? (
       <h2>Loading...</h2>
     ) : (
