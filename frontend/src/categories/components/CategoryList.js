@@ -20,9 +20,13 @@ class CategoryList extends Component {
           Categories
         </div>
         <div className="card-body">
-          {items.map((it, idx) => (
-            <Link key={idx} to={it.path} className="btn btn-default">{it.name}</Link>
-          ))}
+          <ul class="nav flex-column">
+            {items.map((it, idx) => (
+              <li className="nav-item">
+                <Link key={idx} to={it.path} className="nav-link">{it.name}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     )
