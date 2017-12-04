@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 
-class EditablePost extends Component {
-
-  constructor(props) {
-    super(props)
-  }
+class PostForm extends Component {
 
   render() {
     const { categories } = this.props;
@@ -35,4 +31,4 @@ class EditablePost extends Component {
   }
 }
 
-export default EditablePost;
+export default PostForm;

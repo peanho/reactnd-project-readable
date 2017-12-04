@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import ReactModal from 'react-modal'
 import { PostList, EditablePost, actions as postsActions } from '../../posts'
 import CategoryList from '../../categories'

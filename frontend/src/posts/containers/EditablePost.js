@@ -5,6 +5,19 @@ import PostForm from '../components/PostForm'
 
 class EditablePost extends Component {
 
+  constructor(props) {
+    super(props)
+    const { post } = this.props
+    this.state = post ? { ...post } : {}
+  }
+
+  handleEditTitle = event => {
+    const title = event.target.value
+    this.setState({
+      title
+    })
+  }
+
   render() {
     const { post = {}, categories } = this.props;
     return <PostForm post={post} categories={categories} />
