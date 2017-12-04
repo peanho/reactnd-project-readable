@@ -32,6 +32,13 @@ export function receivePostUpdate( post ) {
   };
 }
 
+export function createPost( post ) {
+  return dispatch => {
+    return PostsAPI.create(post)
+      .then(post => dispatch(receivePostUpdate))
+  }
+}
+
 export function fetchPosts() {
   return dispatch => {
     dispatch(requestPosts());

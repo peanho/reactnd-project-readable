@@ -16,14 +16,15 @@ class CategoryList extends Component {
     const { items } = this.props;
     return (
       <div className="card">
-        <div className="card-header">
-          Categories
+        <div className="card-header d-flex justify-content-around">
+          <span>Categories</span>
+          <Link to="/">Clear</Link>
         </div>
         <div className="card-body">
-          <ul class="nav flex-column">
+          <ul className="nav flex-column">
             {items.map((it, idx) => (
-              <li className="nav-item">
-                <Link key={idx} to={it.path} className="nav-link">{it.name}</Link>
+              <li key={idx} className="nav-item">
+                <Link to={it.path} className="nav-link">{it.name}</Link>
               </li>
             ))}
           </ul>

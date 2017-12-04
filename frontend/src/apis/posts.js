@@ -1,6 +1,6 @@
-import { api, headers } from './index';
+import { api, headers } from './index'
 
-const resource = `${api}/posts`;
+const resource = `${api}/posts`
 
 /**
  * Gets all posts
@@ -8,7 +8,18 @@ const resource = `${api}/posts`;
  */
 export const getAll = () =>
   fetch(resource, { headers })
-    .then(res => res.json());
+    .then(res => res.json())
+
+export const create = ( post ) =>
+  fetch(resource, {
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    method:  'POST',
+    body: JSON.stringify({})
+  })
+  .then(res => res.json())
 
 /**
  * Votes on post
@@ -23,7 +34,7 @@ export const post = (postId, vote) =>
     method: 'POST',
     body: JSON.stringify({option: vote})
   })
-    .then(res => res.json());
+    .then(res => res.json())
 
 /**
  * Gets all commnents on post
@@ -32,9 +43,9 @@ export const post = (postId, vote) =>
 export const getComments = postId =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
-    .then(enhanceWithParentId(postId));
+    .then(enhanceWithParentId(postId))
 
 const enhanceWithParentId = parentId => comments => ({
   parentId,
   comments
-});
+})
