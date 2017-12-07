@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import { fetchPosts, sortPosts, sendVote } from '../actions'
-import { getSortedPosts } from '../selectors'
+import { loadAll, sortBy, doVote } from '../actions'
+import { getAllSorted } from '../selectors'
 import PostList from '../components/PostList'
 
 class PostListContainer extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetchPosts())
+    dispatch(loadAll())
   }
 
-  handleSort = sortBy => {
+  handleSort = criterion => {
     const { dispatch } = this.props
-    dispatch(sortPosts(sortBy))
+    dispatch(sortBy(criterion))
   }
 
   handleVote = (postId, vote) => {
     const { dispatch } = this.props
-    dispatch(sendVote(postId, vote))
+    dispatch(doVote(postId, vote))
   }
 
   render() {
@@ -35,7 +35,7 @@ class PostListContainer extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  posts: getSortedPosts
+  posts: getAllSorted
 })
 
 export default connect(mapStateToProps)(PostListContainer);

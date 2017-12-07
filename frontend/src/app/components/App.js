@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Route } from 'react-router';
-import { RootView, DetailView } from '../../views';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Route } from 'react-router'
+import { RootView, DetailView } from '../../views'
 
 class App extends Component {
 

@@ -8,9 +8,11 @@ const PostList = props => {
   const { posts, onSort, onVote } = props
   const handleVote = postId => vote => onVote(postId, vote)
   return (
-    <div className="row p-2">
+    <div className="row">
       <div className="col">
-        <SortControl onSort={onSort} />
+        <div className="d-flex justify-content-end p-2">
+          <SortControl onSort={onSort} />
+        </div>
         {posts.map(post => (
           <div key={post.id} className="row p-2">
             <div className="col-1">
