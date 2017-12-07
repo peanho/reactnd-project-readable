@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPostDetailIfNeeded, sendVote } from '../actions'
+import { loadIfNeeded, doVote } from '../actions'
 import PostDetail from '../components/PostDetail'
 
 class PostDetailContainer extends Component {
 
   componentDidMount() {
     const { dispatch, post } = this.props
-    dispatch(fetchPostDetailIfNeeded(post.id))
+    dispatch(loadIfNeeded(post.id))
   }
 
   handleVote = vote => {
     const { dispatch, post } = this.props
-    dispatch(sendVote(post.id, vote))
+    dispatch(doVote(post.id, vote))
   }
 
   render() {

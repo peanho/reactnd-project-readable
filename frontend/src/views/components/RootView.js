@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactModal from 'react-modal'
-import { PostList, EditablePost, actions as postsActions } from '../../posts'
+import { PostList, EditablePost } from '../../posts'
 import CategoryList from '../../categories'
 
 ReactModal.setAppElement('#root')
@@ -12,26 +12,20 @@ class RootView extends Component {
     super(props)
     this.state = {
       isEditing: false,
-      post: {},
     }
   }
 
   handleAdd = event => {
     event.preventDefault()
-    this.setState({isEditing: true})
+    this.setState( { isEditing: true } )
   }
 
-  handleCancel = () => {
-    this.setState({isEditing: false})
-  }
-
-  handleSubmit = (post) => {
-    const { dispatch } = this.props
-    dispatch(postsActions.createPost(post))
+  handleClose = () => {
+    this.setState( { isEditing: false } )
   }
 
   render() {
-    const { selectedCategory, post } = this.props;
+    const { selectedCategory } = this.props;
     return (
       <div>
         <nav className="navbar navbar-light bg-light mb-2">
@@ -46,9 +40,9 @@ class RootView extends Component {
             <CategoryList selectedCategory={selectedCategory} />
           </div>
         </div>
-        <ReactModal isOpen={this.state.isEditing} onRequestClose={this.handleCancel}>
-          <EditablePost post={post} onSave={this.handleSubmit} />
-        </ReactModal>
+        <ReactModal isOpen={this.state.isEditing} onRequestClose={this.handleClose}>
+          <EditablePost onSubmitCallback={this.handleClose} />
+        </ReactModal>1
       </div>
     )
   }

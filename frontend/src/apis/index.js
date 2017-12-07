@@ -2,7 +2,7 @@ export const api = "http://localhost:3001";
 
 export const headers = {
   'Accept': 'application/json',
-  'Authorization': 'peanho-beta'
+  'Authorization': 'peanho-alfa'
 };
 
 export const throwOnError = (response) => {

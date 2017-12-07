@@ -13,15 +13,15 @@ export const getAll = createSelector(
   ( ids, posts ) => ids.map(id => posts[id])
 )
 
-export const getVisiblePosts = createSelector(
+export const getAllFiltered = createSelector(
   [ getCategoryFilter, getAll ],
   ( filter, posts ) => filter ? posts.filter(
     post => post.category === filter
   ) : posts
 )
 
-export const getSortedPosts = createSelector(
-  [ getSortBy, getVisiblePosts ],
+export const getAllSorted = createSelector(
+  [ getSortBy, getAllFiltered ],
   ( sortBy, visiblePosts ) => {
     const posts = [...visiblePosts]
     switch (sortBy) {
@@ -40,4 +40,4 @@ export const getSortedPosts = createSelector(
 const voteScore = post => post.voteScore
 const timestamp = post => post.timestamp
 const commentCount = post => post.commentCount
-const descending = selector => (a, b) => selector(a) - selector(b)
+const descending = selector => (a, b) => selector(b) - selector(a)
