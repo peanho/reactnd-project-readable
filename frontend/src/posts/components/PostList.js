@@ -1,12 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Post from './Post'
-import Voter from '../../components/Voter'
+import Post from '../containers/PostWithActions'
 import SortControl from '../../components/SortControl'
 
 const PostList = props => {
-  const { posts, onSort, onVote } = props
-  const handleVote = postId => vote => onVote(postId, vote)
+  const { posts, onSort } = props
   return (
     <div className="row">
       <div className="col">
@@ -14,16 +12,14 @@ const PostList = props => {
           <SortControl onSort={onSort} />
         </div>
         {posts.map(post => (
-          <div key={post.id} className="row p-2">
-            <div className="col-1">
-              <Voter score={post.voteScore} onVote={handleVote(post.id)} />
-            </div>
-            <div className="col">
-              <Post {...post}>
-                <Link className="card-links" to={`/${post.category}/${post.id}`}>VIEW</Link>
-              </Post>
-            </div>
-          </div>
+          <Post key={post.id} post={post} className="p-2">
+            <Link 
+              className="card-link btn btn-outline-primary btn-sm"
+              to={`/${post.category}/${post.id}`}
+            >
+              VIEW
+            </Link>
+          </Post>
         ))}
       </div>
     </div>

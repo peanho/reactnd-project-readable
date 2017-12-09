@@ -45,7 +45,7 @@ export const create = post => {
  */
 export const update = post => {
   const { id } = post;
-  fetch(`${resource}/${id}`, {
+  return fetch(`${resource}/${id}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'

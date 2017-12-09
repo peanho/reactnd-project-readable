@@ -1,10 +1,10 @@
 import React from 'react';
 
 function Voter(props) {
-  const { score, onVote } = props;
+  const { score, onVote, className } = props;
   const handleVote = vote => e => onVote(vote);
   return (
-    <div style={{textAlign: 'center'}}>
+    <div className={`text-center ${className}` }>
       <button type="button" className="btn btn-light" onClick={handleVote('upVote')}>
         <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0h24v24H0z" fill="none"/>
