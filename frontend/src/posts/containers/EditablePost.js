@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { selectors as categoriesSelector } from '../../categories'
-import { create } from '../actions'
+import { create, update } from '../actions'
 
 class EditablePost extends Component {
 
-  constructor(props) {
-    super(props)
-    const { post } = this.props
-    this.state = post ? { ...post } : {
+  static defaultProps = {
+    post: {
       title: '',
       body: '',
       author: '',
       category: ''
     }
+  }
+
+  constructor(props) {
+    super(props)
+    const { post } = props
+    this.state = { ...post }
   }
 
   handleChangeTitle = event => {
@@ -46,13 +50,13 @@ class EditablePost extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const { dispatch, onSubmitCallback } = this.props
+    const { onSubmit, afterSubmitCallback } = this.props
     const post = {
       ...this.state,
       timestamp: Date.now()
     }
-    dispatch(create(post))
-    onSubmitCallback();
+    onSubmit(post)
+    afterSubmitCallback()
   }
 
   render() {
@@ -112,13 +116,18 @@ class EditablePost extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const categories = categoriesSelector.getAllIds(state)
-  const { post, onSubmitCallback } = ownProps;
   return {
-    categories,
-    post,
-    onSubmitCallback
+    categories: categoriesSelector.getAllIds(state),
+    post: state.posts.byId[ownProps.postId]
   }
 }
 
-export default connect(mapStateToProps)(EditablePost)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { postId } = ownProps
+  const actionCreator = postId ? update : create
+  return {
+    onSubmit: post => dispatch(actionCreator(post))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditablePost)

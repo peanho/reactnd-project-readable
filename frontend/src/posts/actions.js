@@ -139,7 +139,7 @@ export const create = post => dispatch => {
 export const update = post => dispatch => {
   dispatch(updateRequest(post.id))
   return PostsAPI.update(post)
-    .then(updated => dispatch(updateSuccess))
+    .then(updated => dispatch(updateSuccess(updated)))
 }
 
 export const remove = id => dispatch => {

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import configureStore from '../configureStore';
-import App from '../components/App';
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import configureStore from '../configureStore'
+import App from '../components/App'
 
-const store = configureStore();
+const store = configureStore()
 
 class Root extends Component {
   render() {
@@ -14,8 +14,8 @@ class Root extends Component {
           <Route component={App} />
         </Router>
       </Provider>
-    );
+    )
   }
 }
 
-export default Root;
+export default Root

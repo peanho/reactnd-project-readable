@@ -1,22 +1,23 @@
 import React from 'react';
-import Voter from '../../components/Voter'
 import { CommentList } from '../../comments'
-import Post from './Post'
+import Post from '../containers/PostWithActions'
 
+/**
+ * TODO: change status to deleting and render a 
+ * @param {*Object} props 
+ */
 const PostDetail = props => {
-  const { post, onVote } = props;
+  const { post } = props
+  const { id, body } = post
   return (
     <div className="row">
       <div className="col">
-        <div className="row p-2">
-          <div className="col-1">
-            <Voter score={post.voteScore} onVote={onVote} />
-          </div>
-          <div className="col">
-            <Post {...post}>
-              <div>{post.body}</div>
-            </Post>
-            <CommentList postId={post.id} />
+        <Post post={post}>
+          <p className="card-text">{body}</p>
+        </Post>
+        <div className="row">
+          <div className="col offset-1">
+            <CommentList postId={id} />
           </div>
         </div>
       </div>

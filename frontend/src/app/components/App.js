@@ -1,18 +1,20 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Route } from 'react-router'
-import { RootView, DetailView } from '../../views'
+import React from 'react'
+import { Route, Switch } from 'react-router'
+import { RootView, DetailView, EditPostView } from '../../views'
 
-class App extends Component {
-
-  render() {
-    return (
-      <div className="container-fluid">
+const App = () => {
+  return (
+    <div className="container-fluid">
+      <Switch>
+        <Route path="/posts-new" component={EditPostView} />
+        <Route path="/posts-edit/:postId" component={EditPostView} />
+        <Route path="/comments-new" render={() => <div>ADD COMMENT</div>} />
+        <Route path="/comments-edit/:commentId" render={() => <div>EDIT COMMENT</div>} />
         <Route path="/:category/:postId" component={DetailView} />
-        <Route exact path="/:category?" component={RootView} />
-      </div>
-    );
-  }
+        <Route path="/:category?" component={RootView} />
+      </Switch>
+    </div>
+  );
 }
 
-export default connect()(App);
+export default App;
