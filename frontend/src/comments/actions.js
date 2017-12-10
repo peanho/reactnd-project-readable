@@ -23,66 +23,66 @@ export const REMOVE_FAILURE = 'readable/commnets/REMOVE_FAILURE'
 
 // local actions
 
-const loadAllRequest = postId => ({
+export const loadAllRequest = postId => ({
   type: LOAD_ALL_REQUEST,
   postId
 })
 
-const loadAllSuccess = payload => ({
+export const loadAllSuccess = payload => ({
   type: LOAD_ALL_SUCCESS,
   payload
 })
 
-const loadRequest = id => ({
+export const loadRequest = id => ({
   type: LOAD_REQUEST,
   id
 })
 
-const loadSuccess = comment => ({
+export const loadSuccess = comment => ({
   type: LOAD_SUCCESS,
   comment
 })
 
-const loadFailure = error => ({
+export const loadFailure = error => ({
   type: LOAD_FAILURE,
   payload: error
 })
 
-const updateRequest = id => ({
+export const updateRequest = id => ({
   type: UPDATE_REQUEST,
   id
 })
 
-const updateSuccess = comment => ({
+export const updateSuccess = comment => ({
   type: UPDATE_SUCCESS,
   comment
 })
 
-const updateFailure = error => ({
+export const updateFailure = error => ({
   type: UPDATE_FAILURE,
   error
 })
 
-const createRequest = () => ({
+export const createRequest = () => ({
   type: CREATE_REQUEST
 })
 
-const createSuccess = comment => ({
+export const createSuccess = comment => ({
   type: CREATE_SUCCESS,
   comment
 })
 
-const removeRequest = id => ({
+export const removeRequest = id => ({
   type: REMOVE_REQUEST,
   id
 })
 
-const removeSuccess = comment => ({
+export const removeSuccess = comment => ({
   type: REMOVE_SUCCESS,
   comment
 })
 
-const removeFailure = error => ({
+export const removeFailure = error => ({
   type: REMOVE_FAILURE,
   payload: error
 })
