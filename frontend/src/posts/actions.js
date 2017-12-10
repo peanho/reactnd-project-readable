@@ -49,7 +49,7 @@ export const loadSuccess = post => ({
 
 export const loadFailure = error => ({
   type: LOAD_FAILURE,
-  payload: error
+  error
 })
 
 export const createRequest = () => ({
@@ -114,7 +114,14 @@ export const loadAll = () => dispatch => {
 export const load = id => dispatch => {
   dispatch(loadRequest(id))
   return PostsAPI.getOne(id)
-    .then(post => dispatch(loadSuccess(post)))
+    .then(post => {
+      const { id } = post
+      if (id) {
+        return dispatch(loadSuccess(post))
+      } else {
+        return dispatch(loadFailure({error: 'NOT_FOUND'}))
+      }
+    })
 }
 
 export const loadIfNeeded = id =>

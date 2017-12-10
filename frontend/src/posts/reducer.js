@@ -35,7 +35,7 @@ const postsById = (state = {}, action) => {
     case REMOVE_SUCCESS:
       return {
         ...state,
-        [action.id]: undefined
+        [action.post.id]: undefined
       }
     case commentActions.LOAD_ALL_SUCCESS:
       return addComments(state, action)
@@ -100,7 +100,7 @@ const addComment = (state, action) => {
   }
 }
 
-export const postsReducer = combineReducers({
+const postsReducer = combineReducers({
   byId: postsById,
   allIds: allPosts,
   sortBy

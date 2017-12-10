@@ -10,18 +10,13 @@ class PostDetailContainer extends Component {
     dispatch(loadIfNeeded(post.id))
   }
 
-  handleVote = vote => {
-    const { dispatch, post } = this.props
-    dispatch(doVote(post.id, vote))
-  }
-
   render() {
     const { post, children } = this.props
     const { isFetching } = post
     return isFetching ? (
       <h2>Loading...</h2>
     ) : (
-      <PostDetail post={post} onVote={this.handleVote} children={children} />
+      <PostDetail post={post} children={children} />
     )
   }
 }
