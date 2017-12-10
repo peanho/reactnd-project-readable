@@ -149,7 +149,7 @@ export const remove = id => dispatch => {
 }
 
 export const doVote = (id, vote) => dispatch => {
-  dispatch(updateRequest())
+  dispatch(updateRequest(id))
   return PostsAPI.vote(id, vote)
     .then(post => dispatch(updateSuccess(post)))
 }

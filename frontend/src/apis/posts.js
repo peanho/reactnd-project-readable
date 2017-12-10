@@ -26,7 +26,7 @@ export const getOne = id =>
  * @param {*Object} post - The post to be created
  */
 export const create = post => {
-  post.id = guid();
+  post.id = guid()
   return fetch(resource, {
     headers: {
       ...headers,
@@ -87,7 +87,7 @@ export const vote = (id, vote) =>
     .then(res => res.json())
 
 /**
- * Gets all commnents on post
+ * Gets all comments on post
  * GET /posts/:id/comments
  */
 export const getComments = postId =>
