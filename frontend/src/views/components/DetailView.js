@@ -53,7 +53,6 @@ const mapStateToProps = (state, ownProps) => {
   const { detail } = state.views
   const post = state.posts.byId[postId]
   const { isLoading } = post ? { isLoading: false } : (detail.post || { isLoading: true })
-  console.log(isLoading)
   return {
     isLoading,
     postId,
