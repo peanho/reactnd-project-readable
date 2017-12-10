@@ -16,12 +16,12 @@ class PostDetailContainer extends Component {
   }
 
   render() {
-    const { post } = this.props
+    const { post, children } = this.props
     const { isFetching } = post
     return isFetching ? (
       <h2>Loading...</h2>
     ) : (
-      <PostDetail post={post} onVote={this.handleVote} />
+      <PostDetail post={post} onVote={this.handleVote} children={children} />
     )
   }
 }

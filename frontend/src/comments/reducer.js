@@ -1,11 +1,22 @@
 import { combineReducers } from 'redux'
-import { RECEIVE_COMMENTS, RECEIVE_COMMENT_UPDATE } from './actions'
+import {
+  LOAD_ALL_SUCCESS,
+  LOAD_SUCCESS,
+  CREATE_SUCCESS,
+  UPDATE_SUCCESS,
+  REMOVE_SUCCESS
+} from './actions'
 import { mapById } from '../utils/helpers'
 
 const allComments = (state = [], action) => {
   switch (action.type) {
-    case RECEIVE_COMMENTS:
+    case LOAD_ALL_SUCCESS:
       return action.payload.comments.map(it => it.id)
+    case LOAD_SUCCESS:
+    case CREATE_SUCCESS:
+      return state.concat(action.comment.id)
+    case REMOVE_SUCCESS:
+      return state.filter(id => id !== action.comment.id)
     default:
       return state
   }
@@ -13,18 +24,25 @@ const allComments = (state = [], action) => {
 
 const commentsById = (state = {}, action) => {
   switch (action.type) {
-    case RECEIVE_COMMENTS:
+    case LOAD_ALL_SUCCESS:
       return mapById(action.payload.comments)
-    case RECEIVE_COMMENT_UPDATE:
+    case LOAD_SUCCESS:
+    case CREATE_SUCCESS:
+    case UPDATE_SUCCESS:
       return comment(state, action)
+    case REMOVE_SUCCESS:
+      return {
+        ...state,
+        [action.id]: undefined
+      }
     default:
       return state
   }
 }
 
 const comment = (state, action) => {
-  const { comment } = action;
-  const { id } = comment;
+  const { comment } = action
+  const { id } = comment
   return {
     ...state,
     [id]: comment

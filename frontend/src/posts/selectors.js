@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect'
 
 // selectors of store's state
-const getAllIds = state => state.posts.allIds;
-const getById = state => state.posts.byId;
-const getSortBy = state => state.posts.sortBy;
+const getAllIds = state => state.posts.allIds
+const getById = state => state.posts.byId
+const getSortBy = state => state.posts.sortBy
 
 // selector of props
-export const getCategoryFilter = (_, props) => props.categoryFilter;
+export const getCategoryFilter = (_, props) => props.categoryFilter
 
 export const getAll = createSelector(
   [ getAllIds, getById ],
@@ -32,7 +32,7 @@ export const getAllSorted = createSelector(
       case 'HOT':
         return posts.sort(descending(commentCount))
       default:
-        return posts;
+        return posts
     }
   }
 )

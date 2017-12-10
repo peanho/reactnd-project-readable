@@ -8,8 +8,6 @@ const App = () => {
       <Switch>
         <Route path="/posts-new" component={EditPostView} />
         <Route path="/posts-edit/:postId" component={EditPostView} />
-        <Route path="/comments-new" render={() => <div>ADD COMMENT</div>} />
-        <Route path="/comments-edit/:commentId" render={() => <div>EDIT COMMENT</div>} />
         <Route path="/:category/:postId" component={DetailView} />
         <Route path="/:category?" component={RootView} />
       </Switch>

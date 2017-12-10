@@ -37,8 +37,10 @@ const postsById = (state = {}, action) => {
         ...state,
         [action.id]: undefined
       }
-    case commentActions.RECEIVE_COMMENTS:
+    case commentActions.LOAD_ALL_SUCCESS:
       return addComments(state, action)
+    case commentActions.CREATE_SUCCESS:
+      return addComment(state, action)
     default:
       return state
   }
@@ -66,7 +68,7 @@ const post = (state, action) => {
 }
 
 /*
- * Updates the post with a new "comments" array. Solution adapted on redux
+ * Updates the post with a new "comments" array. Solution adapted from redux
  * tutorial about updating normalized state
  */
 const addComments = (state, action) => {
@@ -84,6 +86,19 @@ const addComments = (state, action) => {
   }
 }
 
+const addComment = (state, action) => {
+  const { comment } = action
+  const { id, parentId } = comment
+  const post = state[parentId]
+  return {
+    ...state,
+    [parentId]: {
+      ...post,
+      commentCount: post.commentCount + 1,
+      comments: post.commentCount ? post.comments.concat([id]) : [id]
+    }
+  }
+}
 
 export const postsReducer = combineReducers({
   byId: postsById,

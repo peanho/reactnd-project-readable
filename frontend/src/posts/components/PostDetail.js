@@ -17,6 +17,11 @@ const PostDetail = props => {
         </Post>
         <div className="row">
           <div className="col offset-1">
+            <div className="row mt-2">
+              <div className="col">
+                {props.children}
+              </div>
+            </div>
             <CommentList postId={id} />
           </div>
         </div>
