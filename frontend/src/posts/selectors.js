@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
 
 // selectors of store's state
-const getAllIds = state => state.posts.allIds
-const getById = state => state.posts.byId
-const getSortBy = state => state.posts.sortBy
+export const getAllIds = state => state.posts.allIds
+export const getById = state => state.posts.byId
+export const getSortBy = state => state.posts.sortBy
 
 // selector of props
 export const getCategoryFilter = (_, props) => props.categoryFilter

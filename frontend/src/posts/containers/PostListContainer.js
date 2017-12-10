@@ -18,9 +18,10 @@ class PostListContainer extends Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { isLoading, posts } = this.props
     return (
       <PostList
+        isLoading={isLoading}
         posts={posts}
         onSort={this.handleSort}
       />
